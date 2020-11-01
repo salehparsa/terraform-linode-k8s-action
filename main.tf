@@ -4,6 +4,13 @@ to make it compatible with terraform 0.13 or greater,linode/linode is used for s
 instead of hashicorp/linode in required_providers.
 **/
 terraform {
+  backend "remote" {
+    organization = "salehparsa"
+
+    workspaces {
+      name = "salehparsa-workspace"
+    }
+  }
   required_version = ">=0.12.21"
   required_providers {
     linode = {
