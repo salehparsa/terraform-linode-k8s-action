@@ -37,9 +37,9 @@ jobs:
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan
+      run: terraform plan -var "token= ${{ secrets.LINODE_TOKEN }}"
 
       # On push to main, build or change infrastructure according to Terraform configuration files
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      run: terraform apply -auto-approve
+      run: terraform apply -var "token= ${{ secrets.LINODE_TOKEN }}" -auto-approve
