@@ -4,11 +4,11 @@ to make it compatible with terraform 0.13 or greater,linode/linode is used for s
 instead of hashicorp/linode in required_providers.
 **/
 terraform {
-  required_version = ">=0.12.21"  
+  required_version = ">=0.12.21"
   required_providers {
     linode = {
       version = ">= 1.13"
-      source = "linode/linode"
+      source  = "linode/linode"
     }
   }
 }

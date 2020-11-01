@@ -1,41 +1,41 @@
 variable "token" {
-    description = "The token to use for deploying Linode infrastructure"
+  description = "The token to use for deploying Linode infrastructure"
 }
 
-variable "k8s_version"{
-    description = "The Kubernetes version to use for this cluster"
-    default = "1.18"    
+variable "k8s_version" {
+  description = "The Kubernetes version to use for this cluster"
+  default     = "1.18"
 }
 
 variable "label" {
-    default = "devops-interview"
+  default = "devops-interview"
 }
 
 variable "tags" {
   description = "Tags to apply to your cluster for organizational purposes"
-  type = list(string)
-  default = ["devops-interview"]
+  type        = list(string)
+  default     = ["devops-interview"]
 }
 
 variable "region" {
-    default = "eu-west"
+  default = "eu-west"
 }
- 
+
 variable "pools" {
-    description = "The Node Pool specifications for the Kubernetes cluster"
-    type = list(object({
-    type = string
+  description = "The Node Pool specifications for the Kubernetes cluster"
+  type = list(object({
+    type  = string
     count = number
-    }))
-    default = [
+  }))
+  default = [
     {
-        type = "g6-standard-1"
-        count = 1
+      type  = "g6-standard-1"
+      count = 1
     },
     {
-        type = "g6-standard-1"
-        count = 1
+      type  = "g6-standard-1"
+      count = 1
     }
-    ]
+  ]
 }
     
