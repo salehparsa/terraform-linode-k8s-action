@@ -2,6 +2,8 @@
 
 [Linode](https://www.linode.com/products/kubernetes/) provides a fast and simple Kubernetes cluster deployments and they even recently started to update their terraform provider to support provisioning via [terraform](https://registry.terraform.io/providers/linode/linode/latest/docs/resources/lke_cluster)
 
+This repository is using Terraform cloud and my personal workspace as a backend configuration.
+
 ## Structure of the files
 
 This folder contains:
@@ -18,7 +20,7 @@ This folder contains:
   - In order to see the `status`, `endpoint`, `id` and `pool` after the deployment, I have added them into output to see in the terminal.
   - Apart from that, to have a `kubeconfig` file for connecting to the cluster, I have added `kubeconfig` in the outfile as well. However, it would be highly recommended to hide the sensitive data from the terminal by adding `sensitive = true`.
 - `secret.tfvars_example`
-  - To avoid pushing the `*.tfvars` file, I have added `*.tfvars` into `.gitignore`. You need to rename this file to `secret.tfvars` and add your Linode Token there.
+  - To avoid pushing the `*.tfvars` file, I have added `*.tfvars` into `.gitignore`. You need to rename this file to `secret.tfvars` and add your Linode Token there. It is only used if you want to apply locally, by using GitHub Action you don't need this file
 
 ## Plan and Apply
 
@@ -94,4 +96,14 @@ Above command will read the output and add it into `lke-linode-cluster-config.ya
 
 ```
 export KUBECONFIG=lke-linode-cluster-config.yaml
+```
+
+However, you have to uncomment following prior to apply above:
+
+```
+/**
+output "kubeconfig" {
+  value = linode_lke_cluster.devops-interview-cluster.kubeconfig
+}
+**/
 ```

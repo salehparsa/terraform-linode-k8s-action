@@ -1,7 +1,8 @@
+/**
 output "kubeconfig" {
   value = linode_lke_cluster.devops-interview-cluster.kubeconfig
 }
-
+**/
 output "api_endpoints" {
   value = linode_lke_cluster.devops-interview-cluster.api_endpoints
 }
